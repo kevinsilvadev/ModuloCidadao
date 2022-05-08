@@ -43,49 +43,67 @@ class _MyHomePageState extends State<MyHomePage> {
   String CPF = '';
 
 
+  Widget _body(){
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Card(
+          child: Column(
+            children: [
+              TextField(
+                onChanged: (text){
+                  placa = text;
+                },
+                decoration: InputDecoration(
+                  labelText: 'Placa do Veículo',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              SizedBox(height: 15),
+              TextField(
+                onChanged: (text){
+                  CPF = text;
+                },
+                keyboardType: TextInputType.numberWithOptions(),
+                decoration: InputDecoration(
+                  labelText: 'CPF',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(height: 15),
+        ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor : MaterialStateProperty.all<Color>(Colors.blueAccent),
+          ),
+          onPressed: () {
+            print("Você enviou os dados");
+          },
+          child: const Text("Prosseguir")
+          ,)
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Material(
-        child: SizedBox(
+    return Scaffold(
+      appBar: AppBar(),
+        body: SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: Padding(
         padding: const EdgeInsets.all(8.0),
-    child: Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-    TextField(
-      onChanged: (text){
-        placa = text;
-      },
-    decoration: InputDecoration(
-    labelText: 'Placa do Veículo',
-    border: OutlineInputBorder(),
-    ),
-    ),
-          SizedBox(height: 15),
-          TextField(
-            onChanged: (text){
-              CPF = text;
-            },
-      keyboardType: TextInputType.numberWithOptions(),
-    decoration: InputDecoration(
-    labelText: 'CPF',
-    border: OutlineInputBorder(),
-    ),
-    ),
-          SizedBox(height: 15),
-          ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor : MaterialStateProperty.all<Color>(Colors.blueAccent),
-              ),
-              onPressed: () {
-                print("Você enviou os dados");
-              },
-              child: const Text("Prosseguir")
-            ,)
-    ],
+    child: Stack(
+      children: [
+        Container(color: Colors.blueGrey),
+        _body(),
+
+      ],
     )
+
     ),
         ),
     );

@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_functions/cloud_functions.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(const MyApp());
+
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final Future<FirebaseApp> _fbapp = Firebase.initializeApp();
+  MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -15,7 +21,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home:  FutureBuilder(
+        future: _fbapp,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+          print('You have an error! ${snapshot.error.toString()}');
+          return Text('Something went wrong');
+        } else if (snapshot.hasData){
+          return MyHomePage(title: 'My Amazing Counter App');
+        } else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } },
+      ),
     );
   }
 }
@@ -27,8 +46,6 @@ class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
-
-
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
@@ -79,7 +96,9 @@ class _MyHomePageState extends State<MyHomePage> {
             backgroundColor : MaterialStateProperty.all<Color>(Colors.blueAccent),
           ),
           onPressed: () {
-            print("Você enviou os dados");
+            final functions = FirebaseFunctions.instanceFor(region: "southamerica-east1");
+            final result = functions.httpsCallable('funcaoTeste').call();
+
           },
           child: const Text("Prosseguir")
           ,)

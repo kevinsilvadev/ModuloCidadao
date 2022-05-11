@@ -5,12 +5,12 @@ import 'package:firebase_core/firebase_core.dart';
 
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  await WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final Future<FirebaseApp> _fbapp = Firebase.initializeApp();
+  final  Future<FirebaseApp> _fbapp = Firebase.initializeApp();
   MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
@@ -59,7 +59,6 @@ class _MyHomePageState extends State<MyHomePage> {
   String placa = '';
   String CPF = '';
 
-
   Widget _body(){
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -95,10 +94,9 @@ class _MyHomePageState extends State<MyHomePage> {
           style: ButtonStyle(
             backgroundColor : MaterialStateProperty.all<Color>(Colors.blueAccent),
           ),
-          onPressed: () {
-            final functions = FirebaseFunctions.instanceFor(region: "southamerica-east1");
-            final result = functions.httpsCallable('funcaoTeste').call();
-
+          onPressed: () async {
+            final  functions = FirebaseFunctions.instanceFor(region: "southamerica-east1");
+            final result =  await functions.httpsCallable('funcaoTeste').call();
           },
           child: const Text("Prosseguir")
           ,)

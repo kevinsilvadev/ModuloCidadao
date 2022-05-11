@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-
-
 Future<void> main() async {
   await WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
@@ -12,6 +10,7 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   final  Future<FirebaseApp> _fbapp = Firebase.initializeApp();
   MyApp({Key? key}) : super(key: key);
+
 
   // This widget is the root of your application.
   @override
@@ -38,6 +37,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -94,6 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
           style: ButtonStyle(
             backgroundColor : MaterialStateProperty.all<Color>(Colors.blueAccent),
           ),
+
           onPressed: () async {
             final  functions = FirebaseFunctions.instanceFor(region: "southamerica-east1");
             final result =  await functions.httpsCallable('funcaoTeste').call();

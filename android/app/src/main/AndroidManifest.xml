@@ -4,6 +4,11 @@
         android:label="modulo_cidadao"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+       <!-- TODO: Add your Google Maps API key here -->
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyA3Bg81SmxIJCFLr9COilEDht4QylZsC38"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

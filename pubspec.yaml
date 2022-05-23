@@ -36,13 +36,29 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_core: ^1.16.0
   flutter_credit_card: ^2.0.0
-
+  flutter_native_splash: ^1.2.0
+  flutter_launcher_icons: ^0.9.1
 
   #Conflito resolvido
   cloud_functions: ^3.2.14
   google_maps_flutter: ^2.1.5
   google_maps_flutter_web: ^0.3.2+2
-  
+
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: "assets/app/iconcidadao.png"
+  android: true
+  ios: true
+
+flutter_icons:
+  image_path: "assets/app/iconcidadao.png"
+  ios: true
+  remove_alpha_ios: true
+  android: "launcher_icon"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/app/iconcidadao.png"
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

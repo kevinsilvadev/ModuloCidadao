@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:modulo_cidadao/screens/metodosPagamento.dart';
+import 'package:modulo_cidadao/screens/seleciona_ticket.dart';
 
 
 class maps extends StatefulWidget {
@@ -44,7 +44,7 @@ class _mapsState extends State<maps> {
                 ),
                 onPressed: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => metodosPagamento()),
+                    MaterialPageRoute(builder: (context) => seleciona_ticket()),
                   );
                 },
                 child: Text('Comprar Ticket'),

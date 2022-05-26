@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:modulo_cidadao/screens/metodosPagamento.dart';
 
 
-
-
 class seleciona_ticket extends StatefulWidget {
   const seleciona_ticket({Key? key}) : super(key: key);
 
@@ -18,7 +16,6 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
   String cnpj = '';
 
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,9 +25,10 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
           centerTitle: true,
         ),
         body: Center(
-          child: Stack(
+          child: Column(
             children: [
               Card(
+                margin: EdgeInsets.all(20),
                 shape: RoundedRectangleBorder(
                   side: BorderSide(
                     color: Theme.of(context).colorScheme.outline,
@@ -40,7 +38,8 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                 child: SizedBox(
                   width: 370,
                   height: 215,
-                  child: Column(children: const [
+                  child: Column(
+                    children: const [
                     Text('Digite a Placa do Veículo:',
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
@@ -71,7 +70,7 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                 ),
               ),
               Card(
-                margin: EdgeInsets.only(top:250),
+                margin: EdgeInsets.all(20),
                 shape: RoundedRectangleBorder(
                   side: BorderSide(
                     color: Theme.of(context).colorScheme.outline,
@@ -81,6 +80,11 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                 child: SizedBox(
                   width: 370,
                   height: 215,
+                 child: Column(
+                   children: [
+
+                   ],
+                 ),
                 ),
               ),
               Positioned(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modulo_cidadao/screens/credit_card_page.dart';
+import 'package:modulo_cidadao/screens/pix_page.dart';
 
 
 
@@ -21,17 +22,33 @@ class _metodosPagamentoState extends State<metodosPagamento> {
       centerTitle: true,
     ),
     body: Center(
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.all(20)
-        ),
-        child: Text('Cartão de Crédito'),
-        onPressed: (){
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => credit_card_page()),
-          );
-    },
-      )
+      child: Column(
+        children: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.all(20)
+            ),
+            child: Text('Cartão de Crédito'),
+            onPressed: (){
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => credit_card_page()),
+              );
+            },
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.all(20),
+            ),
+            child: Text('PIX'),
+            onPressed: (){
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => pix_page()),
+              );
+            },
+          )
+        ],
+      ),
+
     )
 
   );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modulo_cidadao/screens/metodosPagamento.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 
 
 class seleciona_ticket extends StatefulWidget {
@@ -18,6 +19,16 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
 
   @override
   Widget build(BuildContext context) {
+
+    Future<void> insertTicket(String placaDoVeiculo, int estadia) async {
+      HttpsCallable callable = FirebaseFunctions.instanceFor(region: "southamerica-east1").httpsCallable('addNewTicket');
+      final resp = await callable.call(<String, dynamic>{
+        'placaDoVeiculo': placaDoVeiculo,
+        'estadia': 3
+      });
+      print("result: ${resp.data}");
+    }
+
     return Scaffold(
         backgroundColor: Colors.teal[50],
         appBar: AppBar(
@@ -39,28 +50,31 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                   width: 370,
                   height: 215,
                   child: Column(
-                    children: const [
-                    Text('Digite a Placa do Veículo:',
+                    children:  [
+                    const Text('Digite a Placa do Veículo:',
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(fontWeight: FontWeight.bold),),
+                      style: TextStyle(fontWeight: FontWeight.bold),),
                     TextField(
+                      onChanged: (text) {
+                        placaDoVeiculo = text;
+                      },
                       obscureText: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Placa do Veículo',
                       ),
                     ),
-                    Text('Digite o CPF ou CNPJ:',
+                    const Text('Digite o CPF ou CNPJ:',
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(fontWeight: FontWeight.bold),),
-                    TextField(
+                      style: TextStyle(fontWeight: FontWeight.bold),),
+                    const TextField(
                       obscureText: true,
                       decoration: InputDecoration(
                         labelText: 'CPF',
                       ),
                     ),
-                    TextField(
+                    const TextField(
                       obscureText: true,
                       decoration: InputDecoration(
                         labelText: 'CNPJ',
@@ -70,7 +84,7 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                 ),
               ),
               Card(
-                margin: EdgeInsets.all(20),
+                margin: const EdgeInsets.all(20),
                 shape: RoundedRectangleBorder(
                   side: BorderSide(
                     color: Theme.of(context).colorScheme.outline,
@@ -95,6 +109,7 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                     ),
                     child: Text('Realizar Pagamento'),
                     onPressed: (){
+                      insertTicket(placaDoVeiculo, 3);
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => metodosPagamento()),
                       );

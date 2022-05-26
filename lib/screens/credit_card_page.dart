@@ -1,3 +1,4 @@
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 
@@ -21,6 +22,17 @@ class _credit_card_pageState extends State<credit_card_page> {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> payment() async {
+      HttpsCallable callable = FirebaseFunctions.instanceFor(region: "southamerica-east1").httpsCallable('paymentSimulator');
+      final resp = await callable.call(<String, dynamic>{
+        'cardNumber': cardNumber,
+        'date': expiryDate,
+        'name': cardHolderName,
+        'cvv': cvvCode,
+        'value': 30
+      });
+      print("result: ${resp.data}");
+    }
     return Scaffold(
       backgroundColor: Colors.teal[50],
       appBar: AppBar(
@@ -90,6 +102,7 @@ class _credit_card_pageState extends State<credit_card_page> {
                         ),
                         onPressed: (){
                           if(formKey.currentState!.validate()){
+                            payment();
                             print('valid');
                           }
                           else{

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:modulo_cidadao/screens/seleciona_ticket.dart';
-import 'package:cloud_functions/cloud_functions.dart';
 
 
 
@@ -21,14 +20,6 @@ class _mapsState extends State<maps> {
     mapController = controller;
   }
 
-  Future<List> getFruit() async {
-    HttpsCallable callable = FirebaseFunctions.instanceFor(region: "southamerica-east1").httpsCallable('getZonaAzul');
-    final results = await callable();
-    List fruit = results.data;
-    return fruit;
-  }
-
-
 
   static const vetorDeCordenadas = [LatLng(-22.85660325609261, -47.21124992946328), // R. João Ribeiro Evangelista
     LatLng(-22.856613845955977, -47.21198636919401), // R. Ana Profetisma da Silva
@@ -38,10 +29,6 @@ class _mapsState extends State<maps> {
     LatLng(-22.85245688418955, -47.21002234349986), // Vila Real Santista
     LatLng(-22.85648981655519, -47.21000478754708),  // R. Waldemar Simões
     LatLng(-22.85657000230939, -47.210622911608226)]; // R. José Martin dos Anjos
-
-
-
-
 
 
   static final Marker _place1 = Marker(
@@ -120,7 +107,6 @@ class _mapsState extends State<maps> {
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -156,7 +142,6 @@ class _mapsState extends State<maps> {
                   primary: Colors.white,
                 ),
                 onPressed: () {
-                  getFruit();
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => seleciona_ticket()),
                   );

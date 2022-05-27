@@ -1,6 +1,8 @@
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:modulo_cidadao/screens/seleciona_ticket.dart';
+
 
 
 
@@ -21,8 +23,12 @@ class _mapsState extends State<maps> {
   }
 
 
-
-
+  Future<List> getFruit() async {
+    HttpsCallable callable = FirebaseFunctions.instanceFor(region: "southamerica-east1").httpsCallable('ZonaAzulCidadao');
+    final results = await callable();
+    List fruit = results.data;
+    return fruit;
+  }
 
   static const  vetorDeCoordenadas = [LatLng(-22.85664450504122, -47.21118569636944), // R. João Ribeiro Evangelista
     LatLng(-22.856633991780658, -47.212044188759094), // R. Ana Profetisma da Silva
@@ -46,16 +52,16 @@ class _mapsState extends State<maps> {
   static final Polyline _Polyline = Polyline(
       polylineId: PolylineId('_Polyline'),
       points: vetorDeCoordenadas,
-    width: 1
+      width: 1
   );
 
 
   static final Polygon _Polygon = Polygon(
       polygonId: PolygonId('_Polygon'),
       points: vetorDeCoordenadas,
-    strokeWidth: 5,
-    fillColor: Colors.lightBlueAccent.withOpacity(0.3)
-    
+      strokeWidth: 5,
+      fillColor: Colors.lightBlueAccent.withOpacity(0.3)
+
   );
 
   @override
@@ -69,15 +75,15 @@ class _mapsState extends State<maps> {
         body: Stack(
             children:[
               GoogleMap(
-                mapType: MapType.normal,
-                onMapCreated: _onMapCreated,
+                  mapType: MapType.normal,
+                  onMapCreated: _onMapCreated,
                   polylines: {
-                  _Polyline
+                    _Polyline
                   },
                   polygons: {
                     _Polygon
                   },
-                initialCameraPosition: _hortolandia
+                  initialCameraPosition: _hortolandia
               ),
               TextButton(
                 style: TextButton.styleFrom(

@@ -1,9 +1,7 @@
-
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:modulo_cidadao/screens/seleciona_ticket.dart';
-
 
 
 
@@ -31,6 +29,7 @@ class _mapsState extends State<maps> {
     return fruit;
   }
 
+  //coordenadas do banco aqui
   static const  vetorDeCoordenadas = [LatLng(-22.85664450504122, -47.21118569636944), // R. João Ribeiro Evangelista
     LatLng(-22.856633991780658, -47.212044188759094), // R. Ana Profetisma da Silva
     LatLng(-22.85401015976297, -47.21211199746042), // R. João Barreto da Silva 2
@@ -57,36 +56,9 @@ class _mapsState extends State<maps> {
   );
 
 
-  static final Polygon _Polygon = Polygon(
-      consumeTapEvents: true,
-      polygonId: PolygonId('_Polygon'),
-      points: vetorDeCoordenadas,
-      strokeWidth: 5,
-      fillColor: Colors.lightBlueAccent.withOpacity(0.3),
-      onTap: () {
-        print('CLICK / CLICK / CLICK / ');
-        final AlertDialog infoArea = AlertDialog(
-          title: Text('Area Azul do Mapa'),
-          content: Text('Informações da região'),
-          actions: [
-            FlatButton(
-              textColor: Color(0xFF6200EE),
-              onPressed: () {
-                //Navigator.of(context).push(
-                  //MaterialPageRoute(builder: (context) => seleciona_ticket()),
-                //);
-              },
-              child: Text('Comprar'),
-            ),
-          ],
-        );
-        //showDialog(context: context, builder: (context) => infoArea);
-      }
-  );
 
   @override
   Widget build(BuildContext context) {
-
 
     final Polygon _Polygon = Polygon(
         consumeTapEvents: true,
@@ -115,13 +87,10 @@ class _mapsState extends State<maps> {
         }
     );
 
-
-
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Maps Sample App'),
+          title: const Text('Areas de Zona Azul'),
           backgroundColor: Colors.lightBlueAccent[700],
         ),
         body: Stack(
@@ -137,18 +106,6 @@ class _mapsState extends State<maps> {
                   },
                   initialCameraPosition: _hortolandia
               ),
-              TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  primary: Colors.white,
-                ),
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => seleciona_ticket()),
-                  );
-                },
-                child: Text('Comprar Ticket'),
-              )
             ]
         ),
       ),

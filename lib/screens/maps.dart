@@ -1,3 +1,4 @@
+
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -57,15 +58,66 @@ class _mapsState extends State<maps> {
 
 
   static final Polygon _Polygon = Polygon(
+      consumeTapEvents: true,
       polygonId: PolygonId('_Polygon'),
       points: vetorDeCoordenadas,
       strokeWidth: 5,
-      fillColor: Colors.lightBlueAccent.withOpacity(0.3)
-
+      fillColor: Colors.lightBlueAccent.withOpacity(0.3),
+      onTap: () {
+        print('CLICK / CLICK / CLICK / ');
+        final AlertDialog infoArea = AlertDialog(
+          title: Text('Area Azul do Mapa'),
+          content: Text('Informações da região'),
+          actions: [
+            FlatButton(
+              textColor: Color(0xFF6200EE),
+              onPressed: () {
+                //Navigator.of(context).push(
+                  //MaterialPageRoute(builder: (context) => seleciona_ticket()),
+                //);
+              },
+              child: Text('Comprar'),
+            ),
+          ],
+        );
+        //showDialog(context: context, builder: (context) => infoArea);
+      }
   );
 
   @override
   Widget build(BuildContext context) {
+
+
+    final Polygon _Polygon = Polygon(
+        consumeTapEvents: true,
+        polygonId: PolygonId('_Polygon'),
+        points: vetorDeCoordenadas,
+        strokeWidth: 5,
+        fillColor: Colors.lightBlueAccent.withOpacity(0.3),
+        onTap: () {
+          final AlertDialog infoArea = AlertDialog(
+            title: Text('Area Azul do Mapa'),
+            //chamar infos do banco da área aqui
+            content: Text('Informações da região'),
+            actions: [
+              FlatButton(
+                textColor: Color(0xFF6200EE),
+                onPressed: () {
+                  Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => seleciona_ticket()),
+                  );
+                },
+                child: Text('Comprar'),
+              ),
+            ],
+          );
+          showDialog(context: context, builder: (context) => infoArea);
+        }
+    );
+
+
+
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(

@@ -12,6 +12,33 @@ class seleciona_ticket extends StatefulWidget {
 
 class _seleciona_ticketState extends State<seleciona_ticket> {
 
+
+  int _counter = 0;
+
+  void _incrementCounter() {
+    if (_counter < 4){
+      setState(() {
+        _counter++;
+      });
+    } else {
+      final AlertDialog numMaxHoras = AlertDialog(
+        title: Text('Alerta'),
+        //chamar infos do banco da área aqui
+        content: Text('O número máximo de horas foi atingido! (4 horas)'),
+      );
+      showDialog(context: context, builder: (context) => numMaxHoras);
+    }
+  }
+
+
+  void _decrementCounter() {
+    if (_counter > 0) {
+      setState(() {
+        _counter--;
+      });
+    }
+  }
+
   String placaDoVeiculo = '';
   String cpf = '';
   String cnpj = '';
@@ -96,6 +123,39 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                   height: 215,
                  child: Column(
                    children: [
+                     const Text('Escolha Quanto Tempo deseja estacionar:',
+                       textAlign: TextAlign.center,
+                       overflow: TextOverflow.ellipsis,
+                       style: TextStyle(fontWeight: FontWeight.bold)),
+                     const Text(
+                       'Total de Horas do Ticket:',
+                     ),
+                     ElevatedButton(
+                       style: ElevatedButton.styleFrom(
+                           padding: EdgeInsets.all(20)
+                       ),
+                       child: Text('-'),
+                       onPressed: (){
+                         _decrementCounter();
+                       },
+                     ),
+                     Text(
+                       '$_counter',
+                       style: Theme.of(context).textTheme.headline4,
+                     ),
+                     ElevatedButton(
+                       style: ElevatedButton.styleFrom(
+                           padding: EdgeInsets.all(20)
+                       ),
+                       child: Text('+'),
+                       onPressed: (){
+                         _incrementCounter();
+                         tooltip: 'Increment';
+                         child: const Icon(Icons.add);
+                       },
+                     )
+
+
 
                    ],
                  ),

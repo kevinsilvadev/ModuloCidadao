@@ -134,9 +134,11 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                        style: ElevatedButton.styleFrom(
                            padding: EdgeInsets.all(20)
                        ),
-                       child: Text('-'),
+                       child: Text('+'),
                        onPressed: (){
-                         _decrementCounter();
+                         _incrementCounter();
+                         tooltip: 'Increment';
+                         child: const Icon(Icons.add);
                        },
                      ),
                      Text(
@@ -147,16 +149,11 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                        style: ElevatedButton.styleFrom(
                            padding: EdgeInsets.all(20)
                        ),
-                       child: Text('+'),
+                       child: Text('-'),
                        onPressed: (){
-                         _incrementCounter();
-                         tooltip: 'Increment';
-                         child: const Icon(Icons.add);
+                         _decrementCounter();
                        },
-                     )
-
-
-
+                     ),
                    ],
                  ),
                 ),

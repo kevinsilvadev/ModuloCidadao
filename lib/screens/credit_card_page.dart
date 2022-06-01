@@ -1,6 +1,7 @@
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:modulo_cidadao/screens/maps.dart';
 
 
 class credit_card_page extends StatefulWidget {
@@ -104,6 +105,23 @@ class _credit_card_pageState extends State<credit_card_page> {
                           if(formKey.currentState!.validate()){
                             payment();
                             print('valid');
+                            final AlertDialog infoTicket = AlertDialog(
+                              title: Text('Pagamento Efetuado com Sucesso!'),
+                              //chamar infos do banco da área aqui
+                              content: Text('Seu ticket na região foi comprado com o prazo de tantas horas, o veículo pode permanecer até .... no local'),
+                              actions: [
+                                FlatButton(
+                                  textColor: Color(0xFF6200EE),
+                                  onPressed: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(builder: (context) => maps()),
+                                    );
+                                  },
+                                  child: Text('OK'),
+                                ),
+                              ],
+                            );
+                            showDialog(context: context, builder: (context) => infoTicket);
                           }
                           else{
                             print('inValid');

@@ -22,11 +22,11 @@ class _mapsState extends State<maps> {
   }
 
 
-  Future<List> getFruit() async {
-    HttpsCallable callable = FirebaseFunctions.instanceFor(region: "southamerica-east1").httpsCallable('ZonaAzulCidadao');
+  Future<List> getCoordenadas() async {
+    HttpsCallable callable = FirebaseFunctions.instanceFor(region: "southamerica-east1").httpsCallable('getZonaAzul');
     final results = await callable();
-    List fruit = results.data;
-    return fruit;
+    List coordenadas = results.data;
+    return coordenadas;
   }
 
   //coordenadas do banco aqui
@@ -40,22 +40,17 @@ class _mapsState extends State<maps> {
     LatLng(-22.856629763293768, -47.210885574572046)]; // R. José Martin dos Anjos
 
 
-
-
   static final CameraPosition _hortolandia = CameraPosition(
       bearing: 192.8334901395799,
       target: LatLng(-22.85250050972797, -47.21071312998611),
       tilt: 59.440717697143555,
       zoom: 18.151926040649414);
 
-
   static final Polyline _Polyline = Polyline(
       polylineId: PolylineId('_Polyline'),
       points: vetorDeCoordenadas,
       width: 1
   );
-
-
 
   @override
   Widget build(BuildContext context) {

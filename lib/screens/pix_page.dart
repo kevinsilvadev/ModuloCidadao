@@ -8,23 +8,35 @@ class pix_page extends StatefulWidget {
   @override
   _pix_pageState createState() => _pix_pageState();
 }
+String pix = ''; // KEVIN o token gerado entra aqui
 
 class _pix_pageState extends State<pix_page> {
-                                                      // KEVIN o token gerado entra aqui
 
-  final TextEditingController _textController = TextEditingController(text: "mNipQ17QAuG5p95rvcx4husWjzVKC37mXHjLEchgNmghTJj22YCqUkkwtvjjFOtT");
+  void getPixKey() async {
+    HttpsCallable callable = FirebaseFunctions.instanceFor(region: "southamerica-east1").httpsCallable("pix");
+    final results = await callable.call(<String, dynamic>{});
+    setState((){
+      pix = results.data.toString();
+    });
+  }
 
-  // This function is triggered when the copy icon is pressed
-  Future<void> _copyToClipboard() async {
-    await Clipboard.setData(ClipboardData(text: _textController.text));
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text('Copied to clipboard'),
-    ));
+  void initState() {
+    super.initState();
+    getPixKey();
   }
 
   @override
   Widget build(BuildContext context) {
 
+    final TextEditingController _textController = TextEditingController(text: pix.toString());
+
+    // This function is triggered when the copy icon is pressed
+    Future<void> _copyToClipboard() async {
+      await Clipboard.setData(ClipboardData(text: _textController.text));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Copied to clipboard'),
+      ));
+    }
     return Scaffold(
       backgroundColor: Colors.teal[50],
       appBar: AppBar(

@@ -188,7 +188,7 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                       //insertTicket(placaDoVeiculo);
                       _calculaValorTicket();
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => metodosPagamento(valorDoTicket, _counter)),
+                        MaterialPageRoute(builder: (context) => metodosPagamento(valorDoTicket, _counter, placaDoVeiculo)),
                       );
                     },
                   )

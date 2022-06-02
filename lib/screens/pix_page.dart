@@ -1,3 +1,4 @@
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -5,7 +6,8 @@ class pix_page extends StatefulWidget {
 
   int _counter;
   int valorDoTicket;
-  pix_page(this.valorDoTicket, this._counter);
+  String placaDoVeiculo;
+  pix_page(this.valorDoTicket, this._counter, this.placaDoVeiculo);
 
   @override
   _pix_pageState createState() => _pix_pageState();

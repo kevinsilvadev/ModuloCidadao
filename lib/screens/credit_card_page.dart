@@ -8,7 +8,8 @@ class credit_card_page extends StatefulWidget {
 
   int _counter;
   int valorDoTicket;
-  credit_card_page(this.valorDoTicket, this._counter);
+  String placaDoVeiculo;
+  credit_card_page(this.valorDoTicket, this._counter, this.placaDoVeiculo);
 
   @override
   _credit_card_pageState createState() => _credit_card_pageState();
@@ -33,9 +34,9 @@ class _credit_card_pageState extends State<credit_card_page> {
         'cardValidityYear': expiryDate,
         'cardHolderName': cardHolderName,
         'cvv': cvvCode,
-        'amount': 30,
-        'plate': '',
-        'hoursAcquired': ''
+        'plate': widget.placaDoVeiculo,
+        'hoursAcquired': widget._counter,
+        'amount': widget.valorDoTicket,
       });
       print("result: ${resp.data}");
     }

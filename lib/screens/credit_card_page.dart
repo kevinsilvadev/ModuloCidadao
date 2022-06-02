@@ -5,7 +5,10 @@ import 'package:modulo_cidadao/screens/maps.dart';
 
 
 class credit_card_page extends StatefulWidget {
-  const credit_card_page({Key? key}) : super(key: key);
+
+  int _counter;
+  int valorDoTicket;
+  credit_card_page(this.valorDoTicket, this._counter);
 
   @override
   _credit_card_pageState createState() => _credit_card_pageState();
@@ -106,9 +109,11 @@ class _credit_card_pageState extends State<credit_card_page> {
                             payment();
                             print('valid');
                             final AlertDialog infoTicket = AlertDialog(
-                              title: Text('Pagamento Efetuado com Sucesso!'),
+                              title: Text('Pagamento Efetuado!',
+                              textAlign: TextAlign.center,),
                               //chamar infos do banco da área aqui
-                              content: Text('Seu ticket na região foi comprado com o prazo de tantas horas, o veículo pode permanecer até .... no local'),
+                              content: Text('Seu ticket da Região 1 foi comprado com SUCESSO!\nO prazo de estacionamento é de ${widget._counter} horas.\nValor do ticket: R\$ 0${widget.valorDoTicket},00',
+                              textAlign: TextAlign.center),
                               actions: [
                                 FlatButton(
                                   textColor: Color(0xFF6200EE),

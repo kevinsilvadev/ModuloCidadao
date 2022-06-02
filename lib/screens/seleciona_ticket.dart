@@ -39,6 +39,24 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
     }
   }
 
+
+  int valorDoTicket = 2;
+
+  int _calculaValorTicket(){
+    if (_counter == 1) {
+      valorDoTicket = 2;
+    }
+    else if (_counter == 2) {
+      valorDoTicket = 4;
+    }
+    else if (_counter == 3){
+      valorDoTicket = 6;
+    } else {
+      valorDoTicket = 8;
+    }
+    return valorDoTicket;
+  }
+
   String placaDoVeiculo = '';
   String cpf = '';
   String cnpj = '';
@@ -167,9 +185,10 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                     ),
                     child: Text('Realizar Pagamento'),
                     onPressed: (){
-                      insertTicket(placaDoVeiculo);
+                      //insertTicket(placaDoVeiculo);
+                      _calculaValorTicket();
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => metodosPagamento()),
+                        MaterialPageRoute(builder: (context) => metodosPagamento(valorDoTicket, _counter)),
                       );
                     },
                   )

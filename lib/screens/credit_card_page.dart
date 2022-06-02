@@ -37,8 +37,8 @@ class _credit_card_pageState extends State<credit_card_page> {
     return Scaffold(
       backgroundColor: Colors.teal[50],
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         title: const Text('Cartão de Crédito'),
+        centerTitle: true,
       ),
       resizeToAvoidBottomInset: true,
       body: SafeArea(

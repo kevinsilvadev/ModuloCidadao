@@ -1,3 +1,4 @@
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:modulo_cidadao/screens/credit_card_page.dart';
 import 'package:modulo_cidadao/screens/pix_page.dart';
@@ -14,6 +15,12 @@ class metodosPagamento extends StatefulWidget {
 
 class _metodosPagamentoState extends State<metodosPagamento> {
 
+  Future<void> getFruit() async {
+    HttpsCallable callable = FirebaseFunctions.instanceFor(region: "southamerica-east1").httpsCallable('pix');
+    final results = await callable();
+    String fruit = results.data;
+    print(fruit);
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -27,6 +34,7 @@ class _metodosPagamentoState extends State<metodosPagamento> {
         children: [
           GestureDetector(
           onTap: () {
+            getFruit();
             Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => pix_page()),
             );

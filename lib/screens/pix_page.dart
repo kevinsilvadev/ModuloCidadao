@@ -1,3 +1,4 @@
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -9,9 +10,9 @@ class pix_page extends StatefulWidget {
 }
 
 class _pix_pageState extends State<pix_page> {
-                                                                    // KEVIN o token gerado entra aqui
-  final TextEditingController _textController = TextEditingController(text: "token nego ney");
+                                                      // KEVIN o token gerado entra aqui
 
+  final TextEditingController _textController = TextEditingController(text: "mNipQ17QAuG5p95rvcx4husWjzVKC37mXHjLEchgNmghTJj22YCqUkkwtvjjFOtT");
 
   // This function is triggered when the copy icon is pressed
   Future<void> _copyToClipboard() async {
@@ -21,11 +22,9 @@ class _pix_pageState extends State<pix_page> {
     ));
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.teal[50],
       appBar: AppBar(

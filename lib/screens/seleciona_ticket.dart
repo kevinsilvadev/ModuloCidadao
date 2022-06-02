@@ -51,7 +51,7 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
       HttpsCallable callable = FirebaseFunctions.instanceFor(region: "southamerica-east1").httpsCallable('addNewTicket');
       final resp = await callable.call(<String, dynamic>{
         'placaDoVeiculo': placaDoVeiculo,
-        'estadia': 3
+        'estadia': _counter
       });
       print("result: ${resp.data}");
     }

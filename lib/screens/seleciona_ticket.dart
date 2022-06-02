@@ -47,10 +47,10 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
   @override
   Widget build(BuildContext context) {
 
-    Future<void> insertTicket(String placaDoVeiculo, int estadia) async {
+    Future<void> insertTicket(String placaDoVeiculo) async {
       HttpsCallable callable = FirebaseFunctions.instanceFor(region: "southamerica-east1").httpsCallable('addNewTicket');
       final resp = await callable.call(<String, dynamic>{
-        'placaDoVeiculo': placaDoVeiculo,
+        'placaVeiculo': placaDoVeiculo,
         'estadia': _counter
       });
       print("result: ${resp.data}");
@@ -167,7 +167,7 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                     ),
                     child: Text('Realizar Pagamento'),
                     onPressed: (){
-                      insertTicket(placaDoVeiculo, 3);
+                      insertTicket(placaDoVeiculo);
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => metodosPagamento()),
                       );

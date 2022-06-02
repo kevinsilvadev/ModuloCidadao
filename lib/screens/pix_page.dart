@@ -1,9 +1,11 @@
-import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class pix_page extends StatefulWidget {
-  const pix_page({Key? key}) : super(key: key);
+
+  int _counter;
+  int valorDoTicket;
+  pix_page(this.valorDoTicket, this._counter);
 
   @override
   _pix_pageState createState() => _pix_pageState();
@@ -65,7 +67,7 @@ class _pix_pageState extends State<pix_page> {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30, height: 3)),
                     //${_counter}
-                    Text('R\$ 00:00',
+                    Text('R\$ 0${widget.valorDoTicket},00',
                       style: Theme.of(context).textTheme.headline4,),
                   ],
                 ),

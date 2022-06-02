@@ -7,7 +7,10 @@ import 'package:modulo_cidadao/screens/pix_page.dart';
 
 
 class metodosPagamento extends StatefulWidget {
-  const metodosPagamento({Key? key}) : super(key: key);
+
+  int _counter;
+  int valorDoTicket;
+  metodosPagamento(this.valorDoTicket, this._counter);
 
   @override
   _metodosPagamentoState createState() => _metodosPagamentoState();
@@ -36,7 +39,7 @@ class _metodosPagamentoState extends State<metodosPagamento> {
           onTap: () {
             getFruit();
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => pix_page()),
+              MaterialPageRoute(builder: (context) => pix_page(widget.valorDoTicket, widget._counter)),
             );
           },
             child: Card(
@@ -66,7 +69,7 @@ class _metodosPagamentoState extends State<metodosPagamento> {
           GestureDetector(
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => credit_card_page()),
+                MaterialPageRoute(builder: (context) => credit_card_page(widget.valorDoTicket, widget._counter)),
               );
             },
             child: Card(

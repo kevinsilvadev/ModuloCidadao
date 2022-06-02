@@ -129,6 +129,7 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                        style: TextStyle(fontWeight: FontWeight.bold)),
                      const Text(
                        'Total de Horas do Ticket:',
+                       style: TextStyle(height: 2),
                      ),
                      ElevatedButton(
                        style: ElevatedButton.styleFrom(

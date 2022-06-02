@@ -41,7 +41,6 @@ class _mapsState extends State<maps> {
 
 
 
-
   static final CameraPosition _hortolandia = CameraPosition(
       bearing: 192.8334901395799,
       target: LatLng(-22.85250050972797, -47.21071312998611),

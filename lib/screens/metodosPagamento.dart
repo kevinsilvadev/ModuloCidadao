@@ -17,6 +17,7 @@ class _metodosPagamentoState extends State<metodosPagamento> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+      backgroundColor: Colors.teal[50],
     appBar: AppBar(
       title: Text('Métodos de Pagamento'),
       centerTitle: true,
@@ -24,28 +25,64 @@ class _metodosPagamentoState extends State<metodosPagamento> {
     body: Center(
       child: Column(
         children: [
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.all(20)
+          GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => pix_page()),
+            );
+          },
+            child: Card(
+                margin: const EdgeInsets.all(20),
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    color: Theme.of(context).colorScheme.outline,
+                  ),
+                  borderRadius: const BorderRadius.all(Radius.circular(12)),
+                ),
+                child: SizedBox(
+                  width: 370,
+                  height: 150,
+                  child: Column(
+                    children: [
+                      Text('PIX',
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40, height: 3)),
+                    ],
+                  ),
+                ),
             ),
-            child: Text('Cartão de Crédito'),
-            onPressed: (){
+          ),
+
+
+          GestureDetector(
+            onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => credit_card_page()),
               );
             },
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.all(20),
+            child: Card(
+              margin: const EdgeInsets.all(20),
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: Theme.of(context).colorScheme.outline,
+                ),
+                borderRadius: const BorderRadius.all(Radius.circular(12)),
+              ),
+              child: SizedBox(
+                width: 370,
+                height: 150,
+                child: Column(
+                  children: [
+                    Text('Cartão de Crédito',
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40, height: 3)),
+                  ],
+                ),
+              ),
             ),
-            child: Text('PIX'),
-            onPressed: (){
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => pix_page()),
-              );
-            },
-          )
+          ),
         ],
       ),
 

@@ -29,6 +29,10 @@ class _mapsState extends State<maps> {
     return coordenadas;
   }
 
+
+  static const  vetorDeLojas = [LatLng(-22.85664450504122, -47.21118569636944),
+    LatLng(-22.856633991780658, -47.212044188759094)];
+
   //coordenadas do banco aqui
   static const  vetorDeCoordenadas = [LatLng(-22.85664450504122, -47.21118569636944), // R. João Ribeiro Evangelista
     LatLng(-22.856633991780658, -47.212044188759094), // R. Ana Profetisma da Silva
@@ -46,11 +50,7 @@ class _mapsState extends State<maps> {
       tilt: 59.440717697143555,
       zoom: 18.151926040649414);
 
-  static final Polyline _Polyline = Polyline(
-      polylineId: PolylineId('_Polyline'),
-      points: vetorDeCoordenadas,
-      width: 1
-  );
+
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +82,21 @@ class _mapsState extends State<maps> {
         }
     );
 
+
+     final Polyline _Polyline = Polyline(
+        polylineId: PolylineId('_Polyline'),
+        points: vetorDeLojas,
+        width: 0
+    );
+
+
+       final Marker _Marker = Marker(
+         markerId: MarkerId('_Marker'),
+         position: vetorDeLojas[1],
+       );
+
+
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -98,6 +113,9 @@ class _mapsState extends State<maps> {
                   },
                   polygons: {
                     _Polygon
+                  },
+                  markers: {
+                    _Marker
                   },
                   initialCameraPosition: _hortolandia
               ),

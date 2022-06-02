@@ -1,6 +1,7 @@
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:modulo_cidadao/screens/maps.dart';
 
 class pix_page extends StatefulWidget {
 
@@ -101,7 +102,32 @@ class _pix_pageState extends State<pix_page> {
                         hintText: 'Código PIX',
                         icon: IconButton(
                           icon: const Icon(Icons.copy),
-                          onPressed: _copyToClipboard,
+                          onPressed: (){
+                            _copyToClipboard;
+                            Future.delayed(const Duration(seconds: 5), () {
+
+                              final AlertDialog infoTicket = AlertDialog(
+                                title: Text('Pagamento Efetuado!',
+                                  textAlign: TextAlign.center,),
+                                //chamar infos do banco da área aqui
+                                content: Text('Seu ticket da Região 1 foi comprado com SUCESSO!\nO prazo de estacionamento é de ${widget._counter} horas.\nValor do ticket: R\$ 0${widget.valorDoTicket},00',
+                                    textAlign: TextAlign.center),
+                                actions: [
+                                  FlatButton(
+                                    textColor: Color(0xFF6200EE),
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(builder: (context) => maps()),
+                                      );
+                                    },
+                                    child: Text('OK'),
+                                  ),
+                                ],
+                              );
+                              showDialog(context: context, builder: (context) => infoTicket);
+
+                            });
+                          },
                         ),
                       ),
                     ),

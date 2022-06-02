@@ -4,7 +4,6 @@
 
 // ignore_for_file: directives_ordering
 // ignore_for_file: lines_longer_than_80_chars
-// ignore_for_file: depend_on_referenced_packages
 
 import 'package:cloud_functions_web/cloud_functions_web.dart';
 import 'package:firebase_core_web/firebase_core_web.dart';

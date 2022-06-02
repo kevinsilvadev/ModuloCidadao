@@ -13,7 +13,7 @@ class seleciona_ticket extends StatefulWidget {
 class _seleciona_ticketState extends State<seleciona_ticket> {
 
 
-  int _counter = 0;
+  int _counter = 1;
 
   void _incrementCounter() {
     if (_counter < 4){
@@ -32,7 +32,7 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
 
 
   void _decrementCounter() {
-    if (_counter > 0) {
+    if (_counter > 1) {
       setState(() {
         _counter--;
       });

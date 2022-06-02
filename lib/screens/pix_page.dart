@@ -17,7 +17,7 @@ class _pix_pageState extends State<pix_page> {
   Future<void> _copyToClipboard() async {
     await Clipboard.setData(ClipboardData(text: _textController.text));
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text('Copied to clipboard'),
+      content: Text('Chave PIX Copiada!'),
     ));
   }
 
@@ -53,7 +53,7 @@ class _pix_pageState extends State<pix_page> {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30, height: 3)),
                     //${_counter}
-                    Text('RS 00:00',
+                    Text('R\$ 00:00',
                       style: Theme.of(context).textTheme.headline4,),
                   ],
                 ),

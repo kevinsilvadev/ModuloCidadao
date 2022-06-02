@@ -27,13 +27,15 @@ class _credit_card_pageState extends State<credit_card_page> {
   @override
   Widget build(BuildContext context) {
     Future<void> payment() async {
-      HttpsCallable callable = FirebaseFunctions.instanceFor(region: "southamerica-east1").httpsCallable('paymentSimulator');
+      HttpsCallable callable = FirebaseFunctions.instanceFor(region: "southamerica-east1").httpsCallable('paymentSimulator2');
       final resp = await callable.call(<String, dynamic>{
         'cardNumber': cardNumber,
-        'date': expiryDate,
-        'name': cardHolderName,
+        'cardValidityYear': expiryDate,
+        'cardHolderName': cardHolderName,
         'cvv': cvvCode,
-        'value': 30
+        'amount': 30,
+        'plate': '',
+        'hoursAcquired': ''
       });
       print("result: ${resp.data}");
     }

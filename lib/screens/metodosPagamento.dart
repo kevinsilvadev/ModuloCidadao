@@ -10,7 +10,8 @@ class metodosPagamento extends StatefulWidget {
 
   int _counter;
   int valorDoTicket;
-  metodosPagamento(this.valorDoTicket, this._counter);
+  String placaDoVeiculo;
+  metodosPagamento(this.valorDoTicket, this._counter, this.placaDoVeiculo);
 
   @override
   _metodosPagamentoState createState() => _metodosPagamentoState();
@@ -39,7 +40,7 @@ class _metodosPagamentoState extends State<metodosPagamento> {
           onTap: () {
             getFruit();
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => pix_page(widget.valorDoTicket, widget._counter)),
+              MaterialPageRoute(builder: (context) => pix_page(widget.valorDoTicket, widget._counter, widget.placaDoVeiculo)),
             );
           },
             child: Card(
@@ -69,7 +70,7 @@ class _metodosPagamentoState extends State<metodosPagamento> {
           GestureDetector(
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => credit_card_page(widget.valorDoTicket, widget._counter)),
+                MaterialPageRoute(builder: (context) => credit_card_page(widget.valorDoTicket, widget._counter, widget.placaDoVeiculo)),
               );
             },
             child: Card(

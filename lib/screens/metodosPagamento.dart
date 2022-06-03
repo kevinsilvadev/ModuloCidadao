@@ -1,18 +1,17 @@
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:modulo_cidadao/Model/notification_service.dart';
 import 'package:modulo_cidadao/screens/credit_card_page.dart';
 import 'package:modulo_cidadao/screens/pix_page.dart';
-
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 
 
 class metodosPagamento extends StatefulWidget {
-
   int _counter;
   int valorDoTicket;
   String placaDoVeiculo;
   metodosPagamento(this.valorDoTicket, this._counter, this.placaDoVeiculo);
-
   @override
   _metodosPagamentoState createState() => _metodosPagamentoState();
 }
@@ -26,6 +25,13 @@ class _metodosPagamentoState extends State<metodosPagamento> {
     print(fruit);
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    saveTokenToDatabase(widget.placaDoVeiculo);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) => Scaffold(
       backgroundColor: Colors.teal[50],

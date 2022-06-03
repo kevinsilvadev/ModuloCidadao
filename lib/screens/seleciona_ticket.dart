@@ -1,6 +1,8 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:modulo_cidadao/screens/metodosPagamento.dart';
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:modulo_cidadao/Model/notification_service.dart';
 
 
 class seleciona_ticket extends StatefulWidget {
@@ -185,7 +187,7 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                     ),
                     child: Text('Realizar Pagamento'),
                     onPressed: (){
-                      //insertTicket(placaDoVeiculo);
+                      insertTicket(placaDoVeiculo);
                       _calculaValorTicket();
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => metodosPagamento(valorDoTicket, _counter, placaDoVeiculo)),

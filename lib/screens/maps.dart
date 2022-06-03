@@ -2,6 +2,10 @@ import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:modulo_cidadao/screens/seleciona_ticket.dart';
+import 'package:modulo_cidadao/Model/notification_service.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 
 
@@ -28,6 +32,8 @@ class _mapsState extends State<maps> {
     List coordenadas = results.data;
     return coordenadas;
   }
+  // User token
+
 
   //coordenadas do banco aqui
   static const  vetorDeCoordenadas = [LatLng(-22.85664450504122, -47.21118569636944), // R. João Ribeiro Evangelista
@@ -52,6 +58,54 @@ class _mapsState extends State<maps> {
       width: 1
   );
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setOptions();
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? androidNotification = message.notification?.android;
+
+      if(notification!=null&&androidNotification!=null){
+        flutterLocalNotificationsPlugin.show(
+            notification.hashCode.toInt(),
+            notification.title.toString(),
+            notification.body.toString(),
+            NotificationDetails(
+                android:AndroidNotificationDetails(
+                    channel.id,
+                    channel.name,
+                    channelDescription: channel.description,
+                    color: Colors.blue,
+                    playSound: true,
+                    icon: '@mipmap/ic_launcher'
+                )
+            )
+        );
+      }
+    });
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print('A new onMessageOpenedApp event was published!');
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      if (notification != null && android != null) {
+        showDialog(
+            context: context,
+            builder: (_) {
+              return AlertDialog(
+                title: Text(notification.title.toString()),
+                content: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [Text(notification.body.toString())],
+                  ),
+                ),
+              );
+            });
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
 
@@ -80,6 +134,22 @@ class _mapsState extends State<maps> {
           );
           showDialog(context: context, builder: (context) => infoArea);
         }
+    );
+
+    flutterLocalNotificationsPlugin.show(
+        0,
+        "Helloworld",
+        "Bem vindo ao mapa",
+        NotificationDetails(
+            android:AndroidNotificationDetails(
+                channel.id,
+                channel.name,
+                channelDescription: channel.description,
+                color: Colors.blue,
+                playSound: true,
+                icon: '@mipmap/ic_launcher'
+            )
+        )
     );
 
     return MaterialApp(

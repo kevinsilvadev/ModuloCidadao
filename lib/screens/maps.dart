@@ -53,7 +53,6 @@ class _mapsState extends State<maps> {
     LatLng(-22.849503593340934, -47.213595207143214)];
 
 
-
       static final CameraPosition _hortolandia = CameraPosition(
       bearing: 192.8334901395799,
       target: LatLng(-22.85250050972797, -47.21071312998611),
@@ -122,7 +121,7 @@ class _mapsState extends State<maps> {
                        //Puxa a área do banco
             title: Text('Area Azul do Mapa'),
                  //chamar infos do banco da área aqui
-            content: Text('\$'),
+            content: Text('RS 02:00 por hora. \n-Sorveteria Souza\n- Café Colonial Padaria & Confeitaria\n- Café do Nil'),
             actions: [
               FlatButton(
                 textColor: Color(0xFF6200EE),
@@ -149,9 +148,9 @@ class _mapsState extends State<maps> {
         onTap: () {
           final AlertDialog infoArea = AlertDialog(
                         //Puxa a área do banco
-            title: Text('Area Azul do Mapa'),
+            title: Text('Area Roxa do Mapa'),
                     //chamar infos do banco da área aqui
-            content: Text('\$'),
+            content: Text('RS 02:00 por hora. \n- Mult Preços\n- Agro Teca Animal\n- Ice Skobra Bar'),
             actions: [
               FlatButton(
                 textColor: Color(0xFF6200EE),
@@ -175,13 +174,10 @@ class _mapsState extends State<maps> {
         width: 0
     );
 
-
        final Marker _Marker = Marker(
          markerId: MarkerId('_Marker'),
          position: vetorDeLojas[1],
        );
-
-
 
     return MaterialApp(
       home: Scaffold(
@@ -198,8 +194,8 @@ class _mapsState extends State<maps> {
                     _Polyline
                   },
                   polygons: {
-                    _Polygon,
-                    _Polygon2
+                    _Polygon2,
+                    _Polygon
                   },
                   //markers: {
                     //_Marker

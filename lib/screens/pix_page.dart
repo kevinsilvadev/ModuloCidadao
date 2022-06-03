@@ -40,7 +40,7 @@ class _pix_pageState extends State<pix_page> {
     Future<void> _copyToClipboard() async {
       await Clipboard.setData(ClipboardData(text: _textController.text));
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Copied to clipboard'),
+        content: Text('Chave PIX Copiada!'),
       ));
     }
     return Scaffold(
@@ -103,6 +103,9 @@ class _pix_pageState extends State<pix_page> {
                         icon: IconButton(
                           icon: const Icon(Icons.copy),
                           onPressed: (){
+                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                              content: Text('Chave PIX Copiada!'),
+                            ));
                             _copyToClipboard;
                             Future.delayed(const Duration(seconds: 5), () {
 
@@ -110,7 +113,7 @@ class _pix_pageState extends State<pix_page> {
                                 title: Text('Pagamento Efetuado!',
                                   textAlign: TextAlign.center,),
                                 //chamar infos do banco da área aqui
-                                content: Text('Seu ticket da Região 1 foi comprado com SUCESSO!\nO prazo de estacionamento é de ${widget._counter} horas.\nValor do ticket: R\$ 0${widget.valorDoTicket},00',
+                                content: Text('Seu ticket da \$ foi comprado com SUCESSO!\nO prazo de estacionamento é de ${widget._counter} horas.\nValor do ticket: R\$ 0${widget.valorDoTicket},00',
                                     textAlign: TextAlign.center),
                                 actions: [
                                   FlatButton(

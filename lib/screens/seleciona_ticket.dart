@@ -104,7 +104,7 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                       onChanged: (text) {
                         placaDoVeiculo = text;
                       },
-                      obscureText: true,
+                      obscureText: false,
                       decoration: const InputDecoration(
                         labelText: 'Placa do Veículo',
                       ),
@@ -114,13 +114,13 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(fontWeight: FontWeight.bold),),
                     const TextField(
-                      obscureText: true,
+                      obscureText: false,
                       decoration: InputDecoration(
                         labelText: 'CPF',
                       ),
                     ),
                     const TextField(
-                      obscureText: true,
+                      obscureText: false,
                       decoration: InputDecoration(
                         labelText: 'CNPJ',
                       ),
@@ -187,13 +187,18 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                     onPressed: (){
                       //insertTicket(placaDoVeiculo);
                       _calculaValorTicket();
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => metodosPagamento(valorDoTicket, _counter, placaDoVeiculo)),
-                      );
+                      if (placaDoVeiculo == '') {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('Digite a placa do carro!'),
+                        ));
+                      } else {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => metodosPagamento(valorDoTicket, _counter, placaDoVeiculo)),
+                        );
+                      }
                     },
                   )
               )
-
             ],
           )
         )

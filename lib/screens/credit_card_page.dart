@@ -115,7 +115,7 @@ class _credit_card_pageState extends State<credit_card_page> {
                               title: Text('Pagamento Efetuado!',
                               textAlign: TextAlign.center,),
                               //chamar infos do banco da área aqui
-                              content: Text('Seu ticket da Região 1 foi comprado com SUCESSO!\nO prazo de estacionamento é de ${widget._counter} horas.\nValor do ticket: R\$ 0${widget.valorDoTicket},00',
+                              content: Text('Seu ticket da \$ foi comprado com SUCESSO!\nO prazo de estacionamento é de ${widget._counter} horas.\nValor do ticket: R\$ 0${widget.valorDoTicket},00',
                               textAlign: TextAlign.center),
                               actions: [
                                 FlatButton(

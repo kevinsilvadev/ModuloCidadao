@@ -187,7 +187,6 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                     ),
                     child: Text('Realizar Pagamento'),
                     onPressed: (){
-                      insertTicket(placaDoVeiculo);
                       _calculaValorTicket();
                       if (placaDoVeiculo == '') {
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

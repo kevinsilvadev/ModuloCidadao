@@ -1,6 +1,7 @@
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:modulo_cidadao/main.dart';
 import 'package:modulo_cidadao/screens/maps.dart';
 
 
@@ -122,7 +123,7 @@ class _credit_card_pageState extends State<credit_card_page> {
                                   textColor: Color(0xFF6200EE),
                                   onPressed: () {
                                     Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (context) => maps()),
+                                      MaterialPageRoute(builder: (context) => maps(polylineList, polylineList2, zonaAzulComercios, zonaAzulComercios2)),
                                     );
                                   },
                                   child: Text('OK'),

@@ -1,6 +1,7 @@
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:modulo_cidadao/main.dart';
 import 'package:modulo_cidadao/screens/maps.dart';
 
 class pix_page extends StatefulWidget {
@@ -120,7 +121,7 @@ class _pix_pageState extends State<pix_page> {
                                     textColor: Color(0xFF6200EE),
                                     onPressed: () {
                                       Navigator.of(context).push(
-                                        MaterialPageRoute(builder: (context) => maps()),
+                                        MaterialPageRoute(builder: (context) => maps(polylineList, polylineList2, zonaAzulComercios,zonaAzulComercios2)),
                                       );
                                     },
                                     child: Text('OK'),

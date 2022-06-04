@@ -56,17 +56,35 @@ Future<void> getZonaAzulComercios() async {
   }
 }
 
+List <String> zonaAzulComerciosNomes = [];
+List <String> zonaAzulComerciosNomes2 = [];
+Future<void> getZonaAzulComerciosNomes() async {
+  final result =
+  await FirebaseFunctions.instanceFor(region: "southamerica-east1")
+      .httpsCallable('getComercios')
+      .call();
+  for(var item in result.data[0]["comerciosAreaAzul"]) {
+    zonaAzulComerciosNomes.add(item);
+    print(zonaAzulComerciosNomes);
+  }
+  for(var item2 in result.data[0]["comerciosAreaRoxa"]) {
+    zonaAzulComerciosNomes2.add(item2);
+    print(zonaAzulComerciosNomes2);
+  }
+}
+
 Future initialization(BuildContext? context) async{
   getZoneCoords();
   getZoneCoords2();
   getZonaAzulComercios();
+  getZonaAzulComerciosNomes();
   await Future.delayed(const Duration(seconds: 5));
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp (
-    home: maps(polylineList, polylineList2, zonaAzulComercios, zonaAzulComercios2),
+    home: maps(polylineList, polylineList2, zonaAzulComercios, zonaAzulComercios2,zonaAzulComerciosNomes,zonaAzulComerciosNomes2),
   );
 }
 

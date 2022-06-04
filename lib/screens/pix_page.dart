@@ -121,7 +121,7 @@ class _pix_pageState extends State<pix_page> {
                                     textColor: Color(0xFF6200EE),
                                     onPressed: () {
                                       Navigator.of(context).push(
-                                        MaterialPageRoute(builder: (context) => maps(polylineList, polylineList2, zonaAzulComercios,zonaAzulComercios2)),
+                                        MaterialPageRoute(builder: (context) => maps(polylineList, polylineList2, zonaAzulComercios,zonaAzulComercios2,zonaAzulComerciosNomes,zonaAzulComerciosNomes2)),
                                       );
                                     },
                                     child: Text('OK'),

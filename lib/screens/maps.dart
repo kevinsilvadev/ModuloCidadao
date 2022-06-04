@@ -14,8 +14,10 @@ class maps extends StatefulWidget {
   List zonaAzulComercios;
   List polylineList2;
   List zonaAzulComercios2;
+  List zonaAzulComerciosNomes;
+  List  zonaAzulComerciosNomes2;
 
-  maps(this.polylineList, this.polylineList2, this.zonaAzulComercios, this.zonaAzulComercios2);
+  maps(this.polylineList, this.polylineList2, this.zonaAzulComercios, this.zonaAzulComercios2, this.zonaAzulComerciosNomes, this.zonaAzulComerciosNomes2);
 
 
   @override
@@ -106,7 +108,7 @@ class _mapsState extends State<maps> {
                        //Puxa a área do banco
             title: Text('Area Azul do Mapa'),
                  //chamar infos do banco da área aqui
-            content: Text('RS 02:00 por hora. \n-Sorveteria Souza\n- Café Colonial Padaria & Confeitaria\n- Café do Nil'),
+            content: Text('RS 02:00 por hora.\n${zonaAzulComerciosNomes[0]}\n${zonaAzulComerciosNomes[1]}\n${zonaAzulComerciosNomes[2]}'),
             actions: [
               FlatButton(
                 textColor: Color(0xFF6200EE),
@@ -135,7 +137,7 @@ class _mapsState extends State<maps> {
                         //Puxa a área do banco
             title: Text('Area Roxa do Mapa'),
                     //chamar infos do banco da área aqui
-            content: Text('RS 02:00 por hora. \n- Mult Preços\n- Agro Teca Animal\n- Ice Skobra Bar'),
+            content: Text('RS 02:00 por hora. \n${zonaAzulComerciosNomes2[0]}\n${zonaAzulComerciosNomes2[1]}\n${zonaAzulComerciosNomes2[2]}'),
             actions: [
               FlatButton(
                 textColor: Color(0xFF6200EE),

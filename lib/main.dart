@@ -9,7 +9,15 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  await initialization(null);
+
   runApp(MyApp());
+}
+
+
+Future initialization(BuildContext? context) async{
+  await Future.delayed(Duration(seconds: 5));
 }
 
 class MyApp extends StatelessWidget {

@@ -24,27 +24,22 @@ class _mapsState extends State<maps> {
     mapController = controller;
   }
 
+  List<LatLng> vetorDeCoordenadas1 = [];
 
-  Future<List> getCoordenadas() async {
-    HttpsCallable callable = FirebaseFunctions.instanceFor(region: "southamerica-east1").httpsCallable('getZonaAzul');
-    final results = await callable();
-    List coordenadas = results.data;
-    return coordenadas;
+  Future<void> getZoneCoords() async {
+    final result =
+    await FirebaseFunctions.instanceFor(region: "southamerica-east1")
+        .httpsCallable('getZonaAzulCidadao')
+        .call();
+      for(var item in result.data[0]["points"]) {
+        vetorDeCoordenadas1.add(LatLng(item["_latitude"], item["_longitude"]));
+        print(vetorDeCoordenadas1);
+      }
   }
-
 
   static const  vetorDeLojas = [LatLng(-22.85664450504122, -47.21118569636944),
     LatLng(-22.856633991780658, -47.212044188759094)];
 
-  //coordenadas do banco aqui
-  static const  vetorDeCoordenadas1 = [LatLng(-22.85664450504122, -47.21118569636944), // R. João Ribeiro Evangelista
-    LatLng(-22.856633991780658, -47.212044188759094), // R. Ana Profetisma da Silva
-    LatLng(-22.85401015976297, -47.21211199746042), // R. João Barreto da Silva 2
-    LatLng(-22.853963842555615, -47.21130473289067), // R. João Barreto da Silva 3
-    LatLng(-22.8539778839156, -47.21000176557807), // R. João Barreto da Silva 1
-    LatLng(-22.856603323914793, -47.20996374212226), // Vila Real Santista
-    LatLng(-22.856614612579484, -47.210602491034074),  // R. Waldemar Simões
-    LatLng(-22.856629763293768, -47.210885574572046)]; // R. José Martin dos Anjos
 
   //coordenadas do banco área 2
   static const  vetorDeCoordenadas2 = [LatLng(-22.850581584002967, -47.21561588037242),
@@ -109,6 +104,8 @@ class _mapsState extends State<maps> {
 
   @override
   Widget build(BuildContext context) {
+
+    getZoneCoords();
 
     final Polygon _Polygon = Polygon(
         consumeTapEvents: true,

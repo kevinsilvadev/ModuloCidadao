@@ -114,7 +114,7 @@ class _mapsState extends State<maps> {
         strokeWidth: 5,
         fillColor: Colors.lightBlueAccent.withOpacity(0.3),
         onTap: () {
-          final AlertDialog infoArea = AlertDialog(
+          final AlertDialog infoArea1 = AlertDialog(
                        //Puxa a área do banco
             title: Text('Area Azul do Mapa'),
                  //chamar infos do banco da área aqui
@@ -131,19 +131,19 @@ class _mapsState extends State<maps> {
               ),
             ],
           );
-          showDialog(context: context, builder: (context) => infoArea);
+          showDialog(context: context, builder: (context) => infoArea1);
         }
     );
 
 
     final Polygon _Polygon2 = Polygon(
         consumeTapEvents: true,
-        polygonId: PolygonId('_Polygon'),
+        polygonId: PolygonId('_Polygon2'),
         points: vetorDeCoordenadas2,
         strokeWidth: 5,
         fillColor: Colors.deepPurpleAccent.withOpacity(0.3),
         onTap: () {
-          final AlertDialog infoArea = AlertDialog(
+          final AlertDialog infoArea2 = AlertDialog(
                         //Puxa a área do banco
             title: Text('Area Roxa do Mapa'),
                     //chamar infos do banco da área aqui
@@ -160,7 +160,7 @@ class _mapsState extends State<maps> {
               ),
             ],
           );
-          showDialog(context: context, builder: (context) => infoArea);
+          showDialog(context: context, builder: (context) => infoArea2);
         }
     );
 
@@ -191,8 +191,8 @@ class _mapsState extends State<maps> {
                     _Polyline
                   },
                   polygons: {
-                    _Polygon2,
-                    _Polygon
+                    _Polygon,
+                    _Polygon2
                   },
                   //markers: {
                     //_Marker

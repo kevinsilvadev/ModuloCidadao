@@ -32,7 +32,6 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
     }
   }
 
-
   void _decrementCounter() {
     if (_counter > 1) {
       setState(() {
@@ -40,7 +39,6 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
       });
     }
   }
-
 
   int valorDoTicket = 2;
 

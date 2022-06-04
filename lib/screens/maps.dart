@@ -1,6 +1,6 @@
-import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:modulo_cidadao/main.dart';
 import 'package:modulo_cidadao/screens/seleciona_ticket.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:modulo_cidadao/Model/notification_service.dart';
@@ -9,7 +9,14 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 
 class maps extends StatefulWidget {
-  const maps({Key? key}) : super(key: key);
+
+  List polylineList;
+  List zonaAzulComercios;
+  List polylineList2;
+  List zonaAzulComercios2;
+
+  maps(this.polylineList, this.polylineList2, this.zonaAzulComercios, this.zonaAzulComercios2);
+
 
   @override
   _mapsState createState() => _mapsState();
@@ -18,39 +25,15 @@ class maps extends StatefulWidget {
 class _mapsState extends State<maps> {
   late GoogleMapController mapController;
 
+
   final LatLng _center = const LatLng(45.521563, -122.677433);
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
 
-
-  Future<List> getCoordenadas() async {
-    HttpsCallable callable = FirebaseFunctions.instanceFor(region: "southamerica-east1").httpsCallable('getZonaAzul');
-    final results = await callable();
-    List coordenadas = results.data;
-    return coordenadas;
-  }
-
-
   static const  vetorDeLojas = [LatLng(-22.85664450504122, -47.21118569636944),
     LatLng(-22.856633991780658, -47.212044188759094)];
-
-  //coordenadas do banco aqui
-  static const  vetorDeCoordenadas1 = [LatLng(-22.85664450504122, -47.21118569636944), // R. João Ribeiro Evangelista
-    LatLng(-22.856633991780658, -47.212044188759094), // R. Ana Profetisma da Silva
-    LatLng(-22.85401015976297, -47.21211199746042), // R. João Barreto da Silva 2
-    LatLng(-22.853963842555615, -47.21130473289067), // R. João Barreto da Silva 3
-    LatLng(-22.8539778839156, -47.21000176557807), // R. João Barreto da Silva 1
-    LatLng(-22.856603323914793, -47.20996374212226), // Vila Real Santista
-    LatLng(-22.856614612579484, -47.210602491034074),  // R. Waldemar Simões
-    LatLng(-22.856629763293768, -47.210885574572046)]; // R. José Martin dos Anjos
-
-  //coordenadas do banco área 2
-  static const  vetorDeCoordenadas2 = [LatLng(-22.850581584002967, -47.21561588037242),
-    LatLng(-22.852611720198848, -47.213714430768306),
-    LatLng(-22.852585767617885, -47.21354411050538),
-    LatLng(-22.849503593340934, -47.213595207143214)];
 
 
       static final CameraPosition _hortolandia = CameraPosition(
@@ -110,10 +93,12 @@ class _mapsState extends State<maps> {
   @override
   Widget build(BuildContext context) {
 
+    print(polylineList2);
+
     final Polygon _Polygon = Polygon(
         consumeTapEvents: true,
         polygonId: PolygonId('_Polygon'),
-        points: vetorDeCoordenadas1,
+        points: polylineList2,
         strokeWidth: 5,
         fillColor: Colors.lightBlueAccent.withOpacity(0.3),
         onTap: () {
@@ -142,7 +127,7 @@ class _mapsState extends State<maps> {
     final Polygon _Polygon2 = Polygon(
         consumeTapEvents: true,
         polygonId: PolygonId('_Polygon2'),
-        points: vetorDeCoordenadas2,
+        points: polylineList,
         strokeWidth: 5,
         fillColor: Colors.deepPurpleAccent.withOpacity(0.3),
         onTap: () {
@@ -174,10 +159,31 @@ class _mapsState extends State<maps> {
         width: 0
     );
 
-       final Marker _Marker = Marker(
-         markerId: MarkerId('_Marker'),
-         position: vetorDeLojas[1],
+       final Marker _Marker0 = Marker(
+         markerId: MarkerId('_Marker0'),
+         position: zonaAzulComercios[0],
        );
+      final Marker _Marker1 = Marker(
+        markerId: MarkerId('_Marker1'),
+        position: zonaAzulComercios[1],
+      );
+      final Marker _Marker2 = Marker(
+        markerId: MarkerId('_Marker2'),
+        position: zonaAzulComercios[2],
+      );
+      final Marker _Marker3 = Marker(
+        markerId: MarkerId('_Marker3'),
+        position: zonaAzulComercios2[0],
+      );
+      final Marker _Marker4 = Marker(
+        markerId: MarkerId('_Marker4'),
+        position: zonaAzulComercios2[1],
+      );
+      final Marker _Marker5 = Marker(
+        markerId: MarkerId('_Marker5'),
+        position: zonaAzulComercios2[2],
+      );
+
 
     return MaterialApp(
       home: Scaffold(
@@ -197,9 +203,14 @@ class _mapsState extends State<maps> {
                     _Polygon,
                     _Polygon2
                   },
-                  //markers: {
-                    //_Marker
-                  //},
+                  markers: {
+                    _Marker0,
+                    _Marker1,
+                    _Marker2,
+                    _Marker3,
+                    _Marker4,
+                    _Marker5,
+                  },
                   initialCameraPosition: _hortolandia
               ),
             ]

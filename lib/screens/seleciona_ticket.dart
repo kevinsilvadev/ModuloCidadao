@@ -113,13 +113,19 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(fontWeight: FontWeight.bold),),
-                    const TextField(
+                    TextField(
+                      onChanged: (text) {
+                        cpf = text;
+                      },
                       obscureText: false,
                       decoration: InputDecoration(
                         labelText: 'CPF',
                       ),
                     ),
-                    const TextField(
+                    TextField(
+                      onChanged: (text) {
+                        cnpj = text;
+                      },
                       obscureText: false,
                       decoration: InputDecoration(
                         labelText: 'CNPJ',
@@ -189,6 +195,10 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                       if (placaDoVeiculo == '') {
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text('Digite a placa do carro!'),
+                        ));
+                      } else if (cpf == '' && cnpj == '') {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('Digite, pelo menos, o CPF ou CNPJ!'),
                         ));
                       } else {
                         Navigator.of(context).push(

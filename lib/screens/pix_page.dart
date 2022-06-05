@@ -6,10 +6,12 @@ import 'package:modulo_cidadao/screens/maps.dart';
 
 class pix_page extends StatefulWidget {
 
+  List zonaAzulComerciosNomes;
+  List zonaAzulComerciosNomes2;
   int _counter;
   int valorDoTicket;
   String placaDoVeiculo;
-  pix_page(this.valorDoTicket, this._counter, this.placaDoVeiculo);
+  pix_page(this.valorDoTicket, this._counter, this.placaDoVeiculo, this. zonaAzulComerciosNomes, this.zonaAzulComerciosNomes2);
 
   @override
   _pix_pageState createState() => _pix_pageState();
@@ -44,6 +46,16 @@ class _pix_pageState extends State<pix_page> {
         content: Text('Chave PIX Copiada!'),
       ));
     }
+
+    Future<void> insertTicket(String placaDoVeiculo) async {
+      HttpsCallable callable = FirebaseFunctions.instanceFor(region: "southamerica-east1").httpsCallable('addNewTicket');
+      final resp = await callable.call(<String, dynamic>{
+        'placaVeiculo': widget.placaDoVeiculo,
+        'estadia': widget._counter
+      });
+      print("result: ${resp.data}");
+    }
+
     return Scaffold(
       backgroundColor: Colors.teal[50],
       appBar: AppBar(
@@ -108,13 +120,14 @@ class _pix_pageState extends State<pix_page> {
                               content: Text('Chave PIX Copiada!'),
                             ));
                             _copyToClipboard;
+                            insertTicket(widget.placaDoVeiculo);
                             Future.delayed(const Duration(seconds: 5), () {
 
                               final AlertDialog infoTicket = AlertDialog(
                                 title: Text('Pagamento Efetuado!',
                                   textAlign: TextAlign.center,),
                                 //chamar infos do banco da área aqui
-                                content: Text('Seu ticket da \$ foi comprado com SUCESSO!\nO prazo de estacionamento é de ${widget._counter} horas.\nValor do ticket: R\$ 0${widget.valorDoTicket},00',
+                                content: Text('Ticket da área comprado com SUCESSO!\nO prazo de estacionamento é de ${widget._counter} horas.\nValor do ticket: R\$ 0${widget.valorDoTicket},00',
                                     textAlign: TextAlign.center),
                                 actions: [
                                   FlatButton(

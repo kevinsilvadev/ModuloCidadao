@@ -6,7 +6,10 @@ import 'package:modulo_cidadao/Model/notification_service.dart';
 
 
 class seleciona_ticket extends StatefulWidget {
-  const seleciona_ticket({Key? key}) : super(key: key);
+
+  List zonaAzulComerciosNomes;
+  List zonaAzulComerciosNomes2;
+  seleciona_ticket(this.zonaAzulComerciosNomes, this.zonaAzulComerciosNomes2);
 
   @override
   _seleciona_ticketState createState() => _seleciona_ticketState();
@@ -202,7 +205,7 @@ class _seleciona_ticketState extends State<seleciona_ticket> {
                         ));
                       } else {
                         Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => metodosPagamento(valorDoTicket, _counter, placaDoVeiculo)),
+                          MaterialPageRoute(builder: (context) => metodosPagamento(valorDoTicket, _counter, placaDoVeiculo, widget.zonaAzulComerciosNomes, widget.zonaAzulComerciosNomes2)),
                         );
                       }
                     },

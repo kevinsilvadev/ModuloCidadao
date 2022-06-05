@@ -15,7 +15,7 @@ class maps extends StatefulWidget {
   List polylineList2;
   List zonaAzulComercios2;
   List zonaAzulComerciosNomes;
-  List  zonaAzulComerciosNomes2;
+  List zonaAzulComerciosNomes2;
 
   maps(this.polylineList, this.polylineList2, this.zonaAzulComercios, this.zonaAzulComercios2, this.zonaAzulComerciosNomes, this.zonaAzulComerciosNomes2);
 
@@ -108,13 +108,13 @@ class _mapsState extends State<maps> {
                        //Puxa a área do banco
             title: Text('Area Azul do Mapa'),
                  //chamar infos do banco da área aqui
-            content: Text('RS 02:00 por hora.\n${zonaAzulComerciosNomes[0]}\n${zonaAzulComerciosNomes[1]}\n${zonaAzulComerciosNomes[2]}'),
+            content: Text('RS 02:00 por hora.\n\nLojas para comprar Zona Azul:\n- ${zonaAzulComerciosNomes[0]}\n- ${zonaAzulComerciosNomes[1]}\n- ${zonaAzulComerciosNomes[2]}'),
             actions: [
               FlatButton(
                 textColor: Color(0xFF6200EE),
                 onPressed: () {
                   Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => seleciona_ticket()),
+                  MaterialPageRoute(builder: (context) => seleciona_ticket(zonaAzulComerciosNomes, zonaAzulComerciosNomes2)),
                   );
                 },
                 child: Text('Comprar'),
@@ -137,13 +137,13 @@ class _mapsState extends State<maps> {
                         //Puxa a área do banco
             title: Text('Area Roxa do Mapa'),
                     //chamar infos do banco da área aqui
-            content: Text('RS 02:00 por hora. \n${zonaAzulComerciosNomes2[0]}\n${zonaAzulComerciosNomes2[1]}\n${zonaAzulComerciosNomes2[2]}'),
+            content: Text('RS 02:00 por hora.\n\nLojas para comprar Zona Azul:\n- ${zonaAzulComerciosNomes2[0]}\n- ${zonaAzulComerciosNomes2[1]}\n- ${zonaAzulComerciosNomes2[2]}'),
             actions: [
               FlatButton(
                 textColor: Color(0xFF6200EE),
                 onPressed: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => seleciona_ticket()),
+                    MaterialPageRoute(builder: (context) => seleciona_ticket(zonaAzulComerciosNomes, zonaAzulComerciosNomes2)),
                   );
                 },
                 child: Text('Comprar'),

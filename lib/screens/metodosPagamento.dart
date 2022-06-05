@@ -8,10 +8,13 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 
 
 class metodosPagamento extends StatefulWidget {
+
+  List zonaAzulComerciosNomes;
+  List zonaAzulComerciosNomes2;
   int _counter;
   int valorDoTicket;
   String placaDoVeiculo;
-  metodosPagamento(this.valorDoTicket, this._counter, this.placaDoVeiculo);
+  metodosPagamento(this.valorDoTicket, this._counter, this.placaDoVeiculo, this.zonaAzulComerciosNomes, this.zonaAzulComerciosNomes2);
   @override
   _metodosPagamentoState createState() => _metodosPagamentoState();
 }
@@ -46,7 +49,7 @@ class _metodosPagamentoState extends State<metodosPagamento> {
           onTap: () {
             getFruit();
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => pix_page(widget.valorDoTicket, widget._counter, widget.placaDoVeiculo)),
+              MaterialPageRoute(builder: (context) => pix_page(widget.valorDoTicket, widget._counter, widget.placaDoVeiculo, widget.zonaAzulComerciosNomes, widget.zonaAzulComerciosNomes2)),
             );
           },
             child: Card(
@@ -76,7 +79,7 @@ class _metodosPagamentoState extends State<metodosPagamento> {
           GestureDetector(
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => credit_card_page(widget.valorDoTicket, widget._counter, widget.placaDoVeiculo)),
+                MaterialPageRoute(builder: (context) => credit_card_page(widget.valorDoTicket, widget._counter, widget.placaDoVeiculo, widget.zonaAzulComerciosNomes, widget.zonaAzulComerciosNomes2)),
               );
             },
             child: Card(
